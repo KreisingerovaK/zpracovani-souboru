@@ -1,4 +1,3 @@
-<?php require_once('classFile.php'); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,24 +8,26 @@
   <body>
     <div class="container">
       <div class="mt-4 p-5 bg-secondary text-white rounded">
-        <h1>Formulář pro nahrání souborů</h1>
+        <h1>Formulář pro volbu, jakého typu je soubor, který chcete nahrát:</h1>
       </div>
       <br>
       <form action="index.php" method="post" enctype="multipart/form-data">
-        Vyberte soubor pro nahrání souboru: 
-        <input name="soubor" type="file" class="form-control-file border" />
+        Vyberte typ, jakého je soubor který chcete nahrát: 
+        <select name="fileType" id="fileType">
+          <option value="csv">csv</option>
+        </select>
         <br>
         <br>
         <input type="submit" value=" Odeslat " class="btn btn-secondary" />
       </form>
 
-      <?php
-        if(!empty($_FILES['soubor']['name']))
+      <?php   
+        if(!empty($_POST['fileType']))
         { 
-          $instance = new File($_FILES['soubor']['name'], $_FILES['soubor']['tmp_name']);
-          if($instance->saveFile())
+          $fileType = $_POST['fileType'];
+          if($fileType == "csv")
           {
-            echo "Soubor byl uložen";
+            header("Location: fileCSV.php");
           }
         }
       ?>
