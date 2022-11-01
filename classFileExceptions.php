@@ -39,3 +39,11 @@ class FileExtensionException extends Exception {
      return "FileExtensionException: ".$this->getMessage()." v ".$this->getFile()." na řádku <strong>".$this->getLine()."</strong><br>"; 
   }
 }
+
+// Vyjimka pro kontrolu, zda je obrazek pravy
+class FileFakeImgException extends Exception {
+  function __toString()
+  {
+     return "FileFakeImgException: ".$this->getMessage()." v ".$this->getFile()." na řádku <strong>".$this->getLine()."</strong><br>"; 
+  }
+}

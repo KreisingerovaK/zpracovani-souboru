@@ -15,6 +15,7 @@
         Vyberte typ, jakého je soubor který chcete nahrát: 
         <select name="fileType" id="fileType">
           <option value="csv">csv</option>
+          <option value="jpg">jpg</option>
         </select>
         <br>
         <br>
@@ -29,6 +30,10 @@
           if($fileType == "csv")
           {
             header("Location: fileCSV.php");
+          }
+          elseif($fileType == "jpg")
+          {
+            header("Location: fileJPG.php");
           }
         }
       ?>

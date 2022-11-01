@@ -8,6 +8,7 @@ class SaveFile
   protected $fileName;
   protected $fileExtension;
   protected $fileTmpName;
+  protected $fileNameDir;
   protected $completeFileName;
   protected $dir;
   protected $increment;
@@ -21,7 +22,6 @@ class SaveFile
     $this->fileExtension = pathinfo($this->fileName, PATHINFO_EXTENSION); // Nacte pouze priponu 
     $this->fileName      = pathinfo($this->fileName, PATHINFO_FILENAME); // Nacte pouze jmeno souboru
     $this->fileName      = iconv("utf-8", "us-ascii//TRANSLIT", $this->fileName); // Odstrani diakritiku
-    $this->fileName      = preg_replace('~[^-a-z0-9_]+~', '', $this->fileName); // Odstrani transkripci 
     $this->fileExtension = strtolower($this->fileExtension); // Vechna pismena v pripone budou mala 
   }
 
@@ -57,6 +57,8 @@ class SaveFile
   // Funkce, pro ulozeni souboru - presunuti do slozky upload
   protected function moveFile()
   {
+    // Cesta k souboru
+    $this->fileNameDir = 'upload/'.$this->fileName.$this->increment.'.'.$this->fileExtension;
     // Kompletni cesta k souboru s upravenym nazvem souboru
     $this->completeFileName = $this->dir.$this->fileName.$this->increment.'.'.$this->fileExtension;
     // Otestovani, zda se podarilo presunout soubor do slozky, zaroven se u toho prejmenuje na upraveny nazev

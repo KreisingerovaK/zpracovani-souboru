@@ -119,7 +119,7 @@
               $fourthColumn = $_POST["fourthColumn"];
               $fifthColumn = $_POST["fifthColumn"];
 
-              // Vytvori se novy ojekt tridy FileTable
+              // Vytvori se novy ojekt tridy FileCSV
               $instance = new FileCSV($_FILES['soubor']['name'], $_FILES['soubor']['tmp_name']);
 
               if($instance->checkExtension())
