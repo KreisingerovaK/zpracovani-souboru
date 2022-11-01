@@ -45,6 +45,10 @@
             <input type="radio" id="no" name="firstRow" value="no" checked><label for="no">NE</label>
             <br>
             <br>
+            <label class="form-label"><strong>Zadejte jaký oddělovač je použit v souboru: </strong></label>
+            <input name="separator" type="text" maxlength="1" value=";"/>
+            <br>
+            <br>
             <label class="form-label">Název prvního sloupečku: </label>
             <input name="firstColumnName" type="text"/>
             <br>
@@ -94,6 +98,8 @@
               // Pokud je odeslany soubor, zacnou se nacitat hodnoty formulare
               $firstRow = $_POST["firstRow"];
 
+              $separator = $_POST["separator"];
+
               $firstColumnName = $_POST["firstColumnName"];
               $secondColumnName = $_POST["secondColumnName"];
               $thirdColumnName = $_POST["thirdColumnName"];
@@ -122,7 +128,7 @@
                 // metoda saveFile ulozi soubor
                 $instance->saveFile();
                 // handleFile zpracuje soubor tak, jak zadal uzivatel do formulare
-                $instance->handleFile($firstRow, $firstColumnName, $secondColumnName, $thirdColumnName, $fourthColumnName, $fifthColumnName, $firstColumn, $secondColumn, $thirdColumn, $fourthColumn, $fifthColumn);
+                $instance->handleFile($firstRow, $separator, $firstColumnName, $secondColumnName, $thirdColumnName, $fourthColumnName, $fifthColumnName, $firstColumn, $secondColumn, $thirdColumn, $fourthColumn, $fifthColumn);
               }
             }
             else

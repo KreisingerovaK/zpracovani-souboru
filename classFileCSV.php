@@ -8,6 +8,7 @@ class FileCSV extends SaveFile
 {
   // Nastavovani vlastnosti 
   private $firstRow;
+  private $separator;
   private $firstColumnName;
   private $secondColumnName;
   private $thirdColumnName;
@@ -46,10 +47,11 @@ class FileCSV extends SaveFile
   }
 
   // Funkce, ktera soubor zpracovava
-  public function handleFile($firstR, $firstName, $secondName, $thirdName, $fourthName, $fifthName, $first, $second, $third, $fourth, $fifth) 
+  public function handleFile($firstR, $symbol, $firstName, $secondName, $thirdName, $fourthName, $fifthName, $first, $second, $third, $fourth, $fifth) 
   {
     // Nastaveni vlastnosti
     $this->firstRow         = $firstR;
+    $this->separator        = $symbol;
     $this->firstColumnName  = $firstName;
     $this->secondColumnName = $secondName;
     $this->thirdColumnName  = $thirdName;
@@ -88,18 +90,19 @@ class FileCSV extends SaveFile
           echo '</thead>';
 
           // Nacteni prvniho radku
-          $row = fgetcsv($openFile);
+          $row = fgetcsv($openFile, 0, $this->separator);
 
           // Pokud se ma prvni radek preskocit (obsahuje napriklad hlavicku, kterou uzivatel nechce), nacte se druhy
           if($this->firstRow == "yes")
           {
-            $row = fgetcsv($openFile);
+            $row = fgetcsv($openFile, 0, $this->separator);
           }
           
           echo '<tbody>';
 
             // cyklus, ktery se bude opakovat, dokud nebude prvni pole prazdne
-            while ($row[0] != NULL){
+            while (!empty($row[0]))
+            {
               echo '<tr>';
 
                 // Pokud bylo vyplneno, jaky sloupec ma byt prvni, tak se nacte
@@ -135,7 +138,7 @@ class FileCSV extends SaveFile
               echo '</tr>';
 
             // Nacte se dalsi radek
-            $row = fgetcsv($openFile);
+            $row = fgetcsv($openFile, 0, $this->separator);
             }
 
           echo '</tbody>';
