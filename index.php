@@ -21,7 +21,8 @@
         <input type="submit" value=" Odeslat " class="btn btn-secondary" />
       </form>
 
-      <?php   
+      <?php
+        // Podle hodnoty v selectu, se uzivatel presmeruje na stranku pro zpracovani daneho typu souboru   
         if(!empty($_POST['fileType']))
         { 
           $fileType = $_POST['fileType'];
