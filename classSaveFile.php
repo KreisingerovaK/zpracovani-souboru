@@ -25,7 +25,33 @@ class SaveFile
     $this->fileExtension = strtolower($this->fileExtension); // Vechna pismena v pripone budou mala 
   }
 
-  // Funkce, ktera zkontroluje jmeno
+  // Metoda, ktera vrati cestu k souboru 
+  public function getFileName()
+  {
+    return $this->fileNameDir;
+  }
+
+  // Metoda, ktera kontroluje priponu souboru, zda je pozadovaneho typu
+  public function checkExtension($extension)
+  {
+    try
+    {
+      if($this->fileExtension != $extension)
+      {
+        throw new FileExtensionException("<br><p><strong>Soubor není správného formátu. Musíte nahrát csv soubor.</strong></p>");
+      }
+      else
+      {
+        return true;
+      }
+    }
+    catch(FileExtensionException $fee)
+    {
+      echo $fee;
+    }
+  }
+
+  // Metoda, ktera zkontroluje jmeno
   protected function checkName()
   {
     $this->increment = '';
@@ -47,22 +73,28 @@ class SaveFile
         echo $fne;
       }
     }
-    // Kdyz soubor se stejnym jmenem neexistuje, vrati funkce true
+    // Kdyz soubor se stejnym jmenem neexistuje, vrati metoda true
     if(!file_exists($this->dir.$this->fileName.$this->increment.'.'.$this->fileExtension))
     {
       return true;
     }
   }
 
-  // Funkce, pro ulozeni souboru - presunuti do slozky upload
+  // Metoda, pro ulozeni souboru - presunuti do slozky upload
   protected function moveFile()
   {
+    // Pokud neexistuje slozka s nazvem upload, tak se vytvori
+    if(!file_exists('upload'))
+    {
+      mkdir('upload');
+    }
+
     // Cesta k souboru
     $this->fileNameDir = 'upload/'.$this->fileName.$this->increment.'.'.$this->fileExtension;
     // Kompletni cesta k souboru s upravenym nazvem souboru
     $this->completeFileName = $this->dir.$this->fileName.$this->increment.'.'.$this->fileExtension;
     // Otestovani, zda se podarilo presunout soubor do slozky, zaroven se u toho prejmenuje na upraveny nazev
-    // Funkce vraci true
+    // Metoda vraci true
     try
     {
       if(!(move_uploaded_file($this->fileTmpName, $this->completeFileName)))
@@ -80,7 +112,7 @@ class SaveFile
     }
   }
 
-  // Funkce, pro konecne ulozeni souboru
+  // Metoda, pro konecne ulozeni souboru
   public function saveFile() 
   {
     // Provede se kontrola jmena a provede se presunuti souboru

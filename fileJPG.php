@@ -14,15 +14,11 @@
           // Pokud neni odeslany soubor, tak se zobrazi nadpis pro stranku s formularem, jinak se zobrazi nadpis pro tabulku
           if(empty($_FILES['soubor']['name']))
           { 
-        ?>
-            <h1>Formulář pro nahrání jpg souboru:</h1>
-        <?php
+            echo '<h1>Formulář pro nahrání jpg souboru:</h1>';
           }
           else
           {
-        ?>
-            <h1>Zpracovaný jpg soubor:</h1>
-        <?php
+            echo '<h1>Zpracovaný jpg soubor:</h1>';
           }
         ?>
       </div>
@@ -58,7 +54,7 @@
               $instance = new FileJPG($_FILES['soubor']['name'], $_FILES['soubor']['tmp_name']);
 
               // Pokud je soubor spravneho typu, tak se pouziji metody pro tridu FileJPG
-              if($instance->checkExtension())
+              if($instance->checkExtension('jpg'))
               {
                 // Zkontroluje se, zda se jedna o pravy obrazek
                 if($instance->checkImg())

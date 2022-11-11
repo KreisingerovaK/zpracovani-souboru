@@ -13,27 +13,7 @@ class FileJPG extends SaveFile
     parent::__construct($name, $tmpName);
   }
 
-  // Funkce, ktera kontroluje priponu souboru, zda je pozadovaneho typu
-  public function checkExtension()
-  {
-    try
-    {
-      if($this->fileExtension != "jpg")
-      {
-        throw new FileExtensionException("<br><p><strong>Soubor není správného formátu. Musíte nahrát jpg soubor.</strong></p>");
-      }
-      else
-      {
-        return true;
-      }
-    }
-    catch(FileExtensionException $fee)
-    {
-      echo $fee;
-    }
-  }
-
-  // Funkce, ktera kontroluje, zda se jedna o falesny obrazek
+  // Metoda, ktera kontroluje, zda se jedna o falesny obrazek
   public function checkImg()
   {
     try{
@@ -52,7 +32,7 @@ class FileJPG extends SaveFile
     }
   } 
 
-  // Funkce, ktera obrazek zobrazi
+  // Metoda, ktera obrazek zobrazi
   public function displayImg()
   {
     echo "<img src='".$this->fileNameDir."' class='img-fluid' alt='nahrany obrazek'>";

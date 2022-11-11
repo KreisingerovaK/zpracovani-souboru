@@ -16,14 +16,6 @@ class FileMoveException extends Exception {
   }
 }
 
-// Vyjimka pro existenci souboru
-class FileExistException extends Exception {
-    function __toString()
-    {
-       return "FileExistException: ".$this->getMessage()." v ".$this->getFile()." na řádku <strong>".$this->getLine()."</strong><br>"; 
-    }
-}
-
 // Vyjimka pro kontrolu, zda byl nahran soubor
 class FileUploadException extends Exception {
   function __toString()
