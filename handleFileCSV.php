@@ -100,7 +100,7 @@ $html .= '<html>';
           $html .= '<br>';
           $html .= '<br>';
           $html .= '<div id="orderColumn">';
-            $html .= '<label class="form-label"><strong>První sloupeček je 0, druhý 1 atd...</strong></label>';
+            $html .= '<label class="form-label"><strong>První sloupeček je 0, druhý 1 atd...</strong></label><br>';
             $html .= '<label class="form-label"><strong>Je nutné vyplnit všechny políčka, pokud zůstane nějaké prázdné, bude mu automaticky přidělen 1. sloupec</strong></label>';
             $html .= '<br>';
             $html .= $htmlOrderColumn;
