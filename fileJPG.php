@@ -28,14 +28,11 @@
         if(empty($_FILES['soubor']['name']))
         { 
       ?>
-          <form action="fileJPG.php" method="post" enctype="multipart/form-data" class="was-validated">
-            <div class="mb-3">
+          <form action="fileJPG.php" method="post" enctype="multipart/form-data">
+            <div class="col-md-10">
               <label class="form-label"><strong>Vyberte soubor (formátu jpg), který chcete zpracovat:</strong></label>
               <input name="soubor" class="form-control" type="file" accept=".jpg, .JPG" required>
-              <div class="valid-feedback">V pořádku.</div>
-              <div class="invalid-feedback">Prosím nahrajte soubor.</div>
             </div>
-            <br>
             <br>
             <input name="submit" type="submit" value=" Odeslat " class="btn btn-secondary">
           </form>

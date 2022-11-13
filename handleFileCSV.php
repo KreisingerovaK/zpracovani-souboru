@@ -69,11 +69,11 @@ $html .= '<html>';
 
         // Vytvori formularova policka pro zadani poradi sloupcu
         $htmlOrderColumn = '';
-        $number = $numberColumns - 1;
+        $numberColumns;
         for($i=1; $i<=$numberColumns; $i++)
         {
           $htmlOrderColumn .= '<label class="form-label">Zadejte, který sloupeček má být '.$i.'.:&nbsp;</label>';
-          $htmlOrderColumn .= '<input id="order'.$i.'" name="'.$i.'Column" type="number" min="0" max="'.$number.'"/>';
+          $htmlOrderColumn .= '<input id="order'.$i.'" name="'.$i.'Column" type="number" min="1" max="'.$numberColumns.'"/>';
           $htmlOrderColumn .= '<br>';
         }
 
@@ -100,7 +100,6 @@ $html .= '<html>';
           $html .= '<br>';
           $html .= '<br>';
           $html .= '<div id="orderColumn">';
-            $html .= '<label class="form-label"><strong>První sloupeček je 0, druhý 1 atd...</strong></label><br>';
             $html .= '<label class="form-label"><strong>Je nutné vyplnit všechny políčka, pokud zůstane nějaké prázdné, bude mu automaticky přidělen 1. sloupec</strong></label>';
             $html .= '<br>';
             $html .= $htmlOrderColumn;
@@ -145,7 +144,7 @@ $html .= '<html>';
           {
             if(!empty($_POST[$i.'Column']))
             {
-              $valueColumOrder = $_POST[$i.'Column'];
+              $valueColumOrder = $_POST[$i.'Column'] - 1;
             }
             else
             {
